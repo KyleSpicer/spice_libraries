@@ -3,22 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char ** create_char_matrix(int rows, int cols)
+char **create_char_matrix(int rows, int cols)
 {
-	if(!rows || !cols){
+	if (!rows || !cols) {
 		return NULL;
 	}
 
-	char ** matrix = calloc(rows, sizeof(char*));
-	
-	if(!matrix) {
+	char **matrix = calloc(rows, sizeof(char *));
+
+	if (!matrix) {
 		printf("Unable to create matrix.\n");
 		return NULL;
 	}
 
 	for (int i = 0; i < rows; i++) {
-		matrix[i] = (char *) calloc(cols, sizeof(char));
-		if(!matrix[i]) {
+		matrix[i] = (char *)calloc(cols, sizeof(char));
+		if (!matrix[i]) {
 			printf("Unable to create column entry for matrix.\n");
 			return NULL;
 		}
@@ -28,25 +28,25 @@ char ** create_char_matrix(int rows, int cols)
 
 }
 
-void print_char_matrix(char ** matrix, int rows, int cols)
+void print_char_matrix(char **matrix, int rows, int cols)
 {
 	if (!matrix || !rows || !cols) {
 		return;
 	}
-    printf("\n");
+	printf("\n");
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
 			printf("%c", matrix[i][j]);
 		}
 		printf("\n");
 	}
-    printf("\n");
+	printf("\n");
 
 }
 
-void destroy_matrix(char ** matrix, int rows) 
+void destroy_matrix(char **matrix, int rows)
 {
-	if(!*matrix || !rows) {
+	if (!*matrix || !rows) {
 		return;
 	}
 
@@ -58,6 +58,4 @@ void destroy_matrix(char ** matrix, int rows)
 
 }
 
-
 /* end of file */
-
