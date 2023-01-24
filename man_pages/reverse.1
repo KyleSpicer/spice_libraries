@@ -1,0 +1,145 @@
+.TH reverse 1 "October 2022" "user manual"
+.SH NAME
+.PP
+reverse.c - 170D WOBC Module K Practical II-A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+usage - ./reverse <128-bit key> <input-file>
+.PP
+.SH DESCRIPTION
+.PP
+Given a various amount of .pcap files that have been encrypted with top-secret 
+alien information packages. The task is to create a command-line utility that 
+will decrypt the message, reverse the direction of command, re-encrypt the new 
+message and write the result to a out.pcap file.
+
+If the encrypted file contains a message, we are to print the original message 
+to stdout, then prepend the message with Don't and replace the first letter of 
+the original message with a lowercase letter.
+
+.PP
+.SH FUNCTIONS
+.PP
+
+.B void display_usage(void);
+- prints the programs proper usage to the terminal.
+
+.B bool verify_magic_number(file_header_t * file_hdr);
+- verifies that the file type id matches the magic number specified for a .pcap.
+If the magic number is not present, the program will close all open files and 
+exit.
+
+.B void verify_arg_count(int argc);
+- ensures the command line argument count is consistent with program usage.
+
+.B int get_file_length(FILE * p_file);
+- uses fseek() and ftell() functions to record the file pointers location at the
+end of the file. This aids in telling the program when the last packet is
+complete.
+
+.B u_int8_t * convert_key_to_array(char * key);
+- receives the command-line argument string and converts the string into a 16
+byte array (key) to decrypt the alien information packet via the
+decrypt_message() function.
+
+.B void did_file_open(FILE * p_file);
+- verifies that the file passed from the user and the out.pcap file opened properly. Displays an error if unable to open.
+
+.B int packet_size(FILE * p_file);
+- uses fseek() and ftell() functions to examine and return the size, in bytes, of the decrypted alien message.
+
+.B int decrypt_payload_type(int payload_type);
+- verifies the file payload type is either a 0 (message) or a 1 (movement).
+
+.B void convert_string_to_hex_key(char * key, u_int8_t *);
+- receives the command-line argument string and converts the string into a 16
+byte array (key) to decrypt the alien information packet via the
+decrypt_message() function.
+
+.B void adjust_azimuth_and_inclination(double * az_or_inclination);
+- receives a double between 0 and 360 degrees. If double <= 180, double += 180. 
+Else, double -= 180.
+
+.B void swap_endianess_back(void * alien_movement);
+- modifies the byte stream of a double to swap from big endian to little endian
+prior to re-encryption.
+
+.PP
+.SH STRUCTURES
+
+.B typedef struct file_header;
+    u_int32_t file_type_id;
+    u_int16_t major_version;
+    u_int16_t minor_version;
+    u_int32_t gmt_offset;
+    u_int32_t accuracy_delta;
+    u_int32_t max_length_of_capture;
+    u_int32_t link_layer_type;
+
+.B typedef struct packet_header;
+    u_int32_t unix_epoch;
+    u_int32_t micro_seconds_epoch;
+    u_int32_t length_of_data_captured;
+    u_int32_t untrucated_packet_length;
+
+.B typedef struct ethernet_frame;
+    u_int16_t  dest_mac[3];
+    u_int16_t  source_mac[3];
+    u_int16_t ethernet_type;
+
+.B typedef struct ip_header;
+    u_int8_t  version : 4;
+    u_int8_t  ihl : 4;
+    u_int8_t  dscp : 7;
+    u_int8_t  ecn : 1;
+    u_int16_t total_length;
+    u_int16_t identification;
+    u_int8_t  flags : 3;
+    u_int16_t fragment_offset : 13;
+    u_int8_t  time_to_live;
+    u_int8_t  protocol;
+    u_int16_t header_checksum;
+    u_int32_t source_ip_address;
+    u_int32_t destination_ip_address;
+
+.B typedef struct tcp_header;
+    u_int16_t source_port;
+    u_int16_t destination_port;
+    u_int32_t sequence_number;
+    u_int32_t acknowledment_number;
+    u_int8_t  data_offset : 4;
+    u_int16_t reserved_plus_flags : 12;
+    u_int16_t window_size;
+    u_int16_t checksum;
+    u_int16_t urgent_pointer;
+
+.B typedef struct tls_header;
+    u_int16_t content_type : 8;
+    u_int16_t version;
+    u_int16_t length;
+
+.B typedef struct alien_packet_header;
+    u_int8_t version;
+    u_int8_t type;
+    u_int32_t total_length : 24;
+    u_int16_t source_id;
+    u_int16_t destination;
+    u_int32_t sequence_id;
+
+.B typedef struct alien_movement;
+    double galactic_azimuth;
+    double galactic_inclination;
+    float distance;
+    float speed;
+
+.PP
+.SH FILES
+reverse.c, reverse_funcs.c, reverse.h, Makefile
+.PP
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com
+

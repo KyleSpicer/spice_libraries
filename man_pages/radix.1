@@ -1,0 +1,45 @@
+.TH radix 1 "December 2022" "user manual"
+.SH NAME
+.PP
+Radix - 170D WOBC Module M Practical 1A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+Usage:
+    ./radix <option 1> <argument 1> <option 2> <argument 2>
+.SH DESCRIPTION
+The Radix Program utilizes a trie-type data structure to receive words via 
+an input file and stores them in a compressed manner. When a second, similar
+word is introduce, the program will split the new word at the first uncommon
+index and store the remainder at it's own location. Common words would branch
+off at each prefix and save memory by utilizing memory more efficiently.
+
+.PP
+.PP
+.SH OPTIONS
+-h || --help : (help) displays help menu with all available program options
+
+-p || --prefix : (prefix) returns a list of words that use the prefix
+
+-f || --file : (file) provide file for use with the program
+
+-s || --search : (search) returns the exact word or message if word not present
+
+-d || --delete : (delete) removes word from dictionary
+.PP
+.SH EXAMPLE Usage
+Example Usage:
+-s option:
+          ./radix -f input.txt -s word
+
+If word is not present:
+        "word does not exist."
+If word is present:
+        word
+
+.PP
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com

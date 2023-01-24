@@ -1,0 +1,96 @@
+.TH holesum 1 "November 2022" "user manual"
+.SH NAME
+.PP
+holesum.c - 170D WOBC Module L Practical IIA
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+usage ./holesum <filename>
+
+*** optional usage (extra credit): ./holesum <filename> <all>
+
+.PP
+.SH FILES 
+.PP
+.B holesum.c - main driver for completing holesum program
+
+.B holesum_functions.c - holesum.h function definitions
+
+.B holesum_functions.h - holesum program function declarations
+
+.B holesum_driver.c - instructor provided test program to test holesum.c
+
+.SH DESCRIPTION
+.PP
+This program accepts an ascii text file via commandline argument and filters
+out the 1's and 0's to create a 2D matrix. Then determines the amount of "holes"
+located within each matrix.
+
+A hole is defined as any singular 0 and/or 0's that connect either on the same 
+row and/or below, beside, or above. The holesum program utilizes recursion to 
+check and record all holes within the file passed by using a depth first search
+method. 
+
+As the program conducts the depth first search, every 0 visited is immediately
+turned into a 1 and recorded.
+
+After the matrix is traversed, the program reports the amount of holes and the 
+largest hole recorded for the file passed. Additionally, there is logic to print
+the size of every hole found. 
+
+.PP
+.SH PROGRAM FLOW
+.PP
+1. Compile the program (holesum.c)
+
+2. Verify executable (holesum) was created in top-level directory
+
+3. Run holesum_driver.c with holesum executable and valid ascii file to run test
+
+*** OPTIONAL USAGE (extra credit): If you wish to run test and print every 
+hole's size, use the following format: ./holesum <filename> <all>
+
+4. Once the test is complete, the number of holes and the size of the largest
+hole will be displayed to stdout.
+
+5. holesum_driver.c reads the print statements and verifies that the correct
+numbers were returned. Additionally a score for each test is displayed to the 
+terminal. The test also verifies the time to completion isn't erroneous. 
+
+
+
+.PP
+.SH FUNCTIONS 
+.PP 
+.B void improper_argc_print_and_exit() 
+- displays error and ussage message
+ 
+.B void array_print(int **array, int rows, int columns) 
+- provides visual
+representation of 2D array
+
+.B void array_destroy(int **array, int rows) 
+- frees all memory associated with 2D array. Additionally, sets array memory 
+address to NULL.
+
+.B int dfs(int **array, int outer, int inner, int row, int column)
+- conducts depth first search (DFS) on 2D array. Strictly on arrays with 1's and 
+0's. If a 1 is encountered or the bounds of the array are exceeded, a 0 is
+returned. If a 0 is encountered, a DFS is conducted and records the amount of
+searches conducted from that point.
+
+.B *** OPTIONAL USAGE (extra credit):
+
+.B void display_all_hole_sizes(char *argv[])
+- if program is ran with <all> commandline argument, the program executes as
+normal, but displays all hole sizes to stdout as well has largest hole and
+number of holes within the file sent in.
+
+
+
+.PP
+.SH AUTHOR 
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course, Fort Gordon, GA. 2022
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com

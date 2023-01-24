@@ -1,0 +1,52 @@
+.TH travel 1 "January 2023" "user manual"
+.SH NAME
+.PP
+Travel - 170D WOBC Module M Practical 2A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+Usage: ./exe [-f] <file> [-s] 2.2,3.3 [-e] 5,5.5 [-d] maximum travel distance
+
+.PP 
+.br
+#include "travel_funcs.h"
+.br
+#include "kd_bst.h"
+.br
+#include "llist.h"
+.br
+#include "spice_file_io.h"
+    
+.SH DESCRIPTION
+This program requires command line arguments of: .CSV file, start coordinate, end coordinate, maximum travel distance.
+
+The purpose of the program is to accept valid data (gas station coordinates) and determine if a path exists between the start node and end node. The program uses the provided distance to begin at the start node (start point) and determine if there is a node (gas station) within the maximum travel distance (distance vehicle can travel), if there is, continue all the way until there isn't a node or the end node is reached. If the end node is reached, the program will display all gas stations visited along the route.
+
+.PP
+.PP
+.SH OPTIONS
+-h || --help : (help) displays help menu with all available program options.
+
+-f || --file : requires a valid .CSV file name.
+
+-s || --start : provide comma-separated start coordinates.
+
+-e || --end : provide comma-separated end coordinates.
+
+-d || --distance : integer - maximum travel distance between gas stations.
+.PP
+.SH EXAMPLE Usage
+Example Usage: ./travel -f myfile.csv -s 2.2,3 -e 5,5 -d 1
+
+If a path exists, program will display gas stations visited.
+
+If no path exists, program will display "No path exists."
+
+
+.PP
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com
+

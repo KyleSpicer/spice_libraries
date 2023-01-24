@@ -1,0 +1,118 @@
+.TH scheduler 1 "October 2022" "user manual"
+.SH NAME
+.PP
+scheduler.c - 170D WOBC Module L Practical I-A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+usage - ./scheduler
+.PP
+.SH DESCRIPTION
+.PP
+Given multiple starter code files (scheduler_driver.c, scheduler_test.h, and scheduler.h) the students are required to create a scheduler.c source file and produce a function program by completing the function prototypes located in scheduler.h. 
+
+scheduler_driver.c is designed to utilize the functions the student builds in order to successfully pass unit testing and display the outcome to the terminal. 
+
+.PP
+.SH FUNCTIONS
+.PP
+
+.B queue_t * queue_create(int size);
+    - brief: creates queue struct for storing and managing jobs.
+    - parameter: int size - total amount of jobs to create space in the queue.
+
+.B void queue_destroy(queue_t ** queue);
+    - brief: frees all allocatted memory within and including the queue.
+    - parameter: queue_t ** queue - double point to the queue. allows for freeing the memory within the queue and then sets the origin memory address to NULL.
+
+.B scheduler * create(int job_capacity);
+    -brief: creates scheduler struct for use within the program.
+    - parameter: int job_capacity - total number of jobs for the scheduler.
+
+.B void destroy(scheduler ** scheduler);
+    - brief: frees all allocated memory within the scheduler struct.
+    - parameter: scheduler ** scheduler - double pointer to scheduler struct. allows to free memory within the struct, the struct, and the origin memory address of the pointer to the struct.
+
+.B void restart_queue(queue_t * queue);
+    - brief: resets all values in queue to zero
+    - parameter: queue_t * queue - queue to be reset.
+
+.B void restart(scheduler * scheduler);
+    - brief: resets proper values in scheduler to zero for further use in the program.
+    - parameter: scheduler * scheduler - scheduler to be reset.
+
+.B queue_t * queue_enqueue(queue_t * queue, int value);
+    - brief: adds value to end of queue.
+    - parameter: queue_t * queue - queue to be added.
+    - parameter: int value - value being added to the queue.
+
+.B int queue_dequeue(queue_t * queue);
+    - brief removes first element in queue
+    - parameter: queue_t * queue - queue to be removed.
+
+.B void add(scheduler * scheduler, int number);
+    - brief: adds a job to the end of the queue.
+    - parameter: queue_t * queue - queue to be added
+    - parameter: int number - value being added
+
+.B int idle(scheduler * scheduler);
+    - brief: determines if the job count of scheduler is zero
+    - parameter: scheduler * scheduler - scheduler being used.
+
+.B int current_job(scheduler * scheduler);
+    - brief: returns current job id of scheduler
+    - parameter: scheduler * scheduler - scheduler being used.
+
+.B double average_wait_time(scheduler * scheduler);
+    - brief: computes and returns the average wait time of jobs
+    - parameter: scheduler * scheduler
+
+.B int array_int_sort(const void * data1, const void * data2);
+    -brief: compares if one value is larger than the other
+    -parameter: data1 - first value
+    -parameter: data2 - second value
+
+.B void schedule_static(scheduler * scheduler, int total_num_jobs, int * array_jobs, int (*ticktock)(), void (*report_status)(struct scheduler *, int current_tick, int job_wait_time));
+    -brief: All jobs arrive at time t=0.
+    -parameter: int total_num_jobs - total number of jobs
+    -parameter: int array_jobs - array of jobs
+    -parameter: int(*ticktock)() - clock function that returns clock ticks
+    -parameter: void(*report)(struct scheduler*, int current_tick, int job_wait_time - status function that takes the current clock tick and job wait time; calls the current job function
+
+
+.B void schedule_variable(scheduler * scheduler, int         total_num_jobs, int * array_job_times, int * array_arrival_times, int (*ticktock)(), void (*report)(struct scheduler *, int current_tick, int job_wait_time));
+    -brief: Jobs arrive at variable times.
+    -parameter: int total_num_jobs - total number of jobs
+    -parameter: int array_jobs - array of jobs
+    -parameter: int array_arrival_times - array of arrival times
+    -parameter: void(*report)(struct scheduler*, int current_tick, int job_wait_time - status function that takes the current clock tick and job wait time; calls the current job function
+
+
+.PP
+.SH STRUCTURES
+
+.B typedef struct scheduler;
+    queue_t * queue; - data structure for storing and managing jobs.
+    int job_id; - Each job is identified by the count in which it was added.
+    int job_count; - Total overall count of jobs, not the current number of jobs.
+    int finish_count; - Total count of processed jobs.
+    int sum_job_time; - total of all job times.
+    int sum_arrival_time; - total of all arrival times.
+    int sum_end_time; - total of all end times.
+    int sum_wait_time; - total of all job wait times.
+
+.B typedef struct queue_t; - data structure used for storing and managing jobs.
+    int head; - first element in the queue.
+    int tail; - last element in the queue.
+    int size; - total amount of jobs.
+    int * data; - holds job time.
+
+.PP
+.SH FILES
+scheduler.h, scheduler_driver.c, scheduler_test.h, scheduler.c
+.PP
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com

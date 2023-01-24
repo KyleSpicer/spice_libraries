@@ -1,0 +1,51 @@
+.TH splitter 1 "September 2022" "user manual"
+.SH
+.PP
+splitter.c - 170D WOBC Module J Practical 2A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+usage: ./splitter <file_name> or ./splitter
+.PP
+.SH DESCRIPTION
+ ./splitter receives a file with music notes or a string of alphabet characters 
+from user input. Splits the string and displays which substrings contain same 
+amount of unique characters. (ex. ababab: aba, bab ab, abab, abab, ab)
+.PP
+.SH FUNCTIONS
+.B void display_error_message();
+- displays proper usage of program and exits.
+
+.B void display_invalid_string(char *string);
+- displays error message for invalid string and string provided.
+
+.B void file_provided(char argv[]);
+- accepts second argument to use with program. if file is valid, opens and reads
+the content for use in the program.
+
+.B void user_input_for_program();
+- with no CL arg passed to program, prompts for user input. Input is used for 
+further use in the program.
+
+.B bool string_validation(char *string);
+- validates proper string input. A valid string has a maximum length of 128 
+alphabetic characters only. Any invalid input will display a message and exit.
+
+.B void string_splitter(char *string);
+- splits each string into two sections at each index for use in program.
+
+.B bool compare_that_split_string(char *left_side, char *right_side);
+- count unique chars on left and right side of pointer.
+
+.B int unique_character_count(char *split_string_side);
+- calculates unique number of characters from two substrings.
+
+.PP
+.PP 
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com
+.SH SEE ALSO
+.PP

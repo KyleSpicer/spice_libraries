@@ -1,0 +1,103 @@
+.TH bacon 1 "January 2023" "user manual"
+.SH NAME
+.PP
+bacon.c - 170D WOBC Module N Practical A
+.SH
+.PP
+.SH SYNOPSIS
+.PP
+Usage: 
+    (short options) ./bacon -f [file] -args [argument format]
+    (long options)  ./bacon --file [file] --arguments [argument format]
+
+    
+Example:
+.br
+    ./bacon -f "input.txt" -c "movie title" year
+
+.PP
+.SH DESCRIPTION
+.PP
+In 6 degrees of Kevin Bacon the idea is to calculate how closely connected any given actor is to Kevin Bacon. For instance, Harrison Ford was in Blade Runner with James Hong and James Hong was in R.I.P.D. with Kevin Bacon. Ford would have a Bacon number of 2, Hong would be 1, and Kevin would naturally have a Bacon number of 0.
+
+This program takes in movie information and uses it to calculate the shortest connection between two actors. The application should accept command line arguments and produce information about movies and actors.
+
+.SH COMMAND LINE ARGUMENTS
+.PP
+
+COMMAND             ARGUMENT FORMAT        DESCRIPTION
+.br
+-f / --file         "Input File"           alternate input file to load
+.br
+-c / --cast         "Movie Title" YEAR     shows cast of movie
+.br
+.br
+-m / --movieinfo    "Movie Title" YEAR     show rating/genres of movie
+.br
+-r / --roles        "Actor"                displays movies actor has been in) (formerly filmography
+.br
+-s / --stats        "Actor"                connectivity of actor) (previous actorcenter
+.br
+-d / --distance     "Actor A" "Actor B"    displays actor->movie->actor->movie->actor relationship
+.br 
+
+-h / --help : provides informative message to stdout
+.br
+
+EXTRA CREDIT OPTIONS:
+.PP
+COMMAND             ARGUMENT FORMAT        DESCRIPTION
+.br
+-e / --extremes     No Arguments           display lowest and highest connected actors)
+.br
+-i / --ignore       "Actor/Movie"          one per actor to ignore during --distance
+
+
+.PP
+.SH COMMAND LINE ARGUMENTS EXPLAINED
+.br
+FILE : input a valid, tab deliminated file containing the following: 
+.br
+"MovieTitle<tab>year<tab>Rating<tab>Genres<tab>actor1<tab>actor2<tab>...actorx<newline>"
+
+CAST : program displays movie title, year and the full cast list in alphabetical order by last name.
+
+MOVIE INFO : program displays movie title, year, rating, genres, and the full cast list in alphabetical order by last name.
+
+ROLES : program display a chronological, alphabetical list of all movies the actor has participated in.
+
+STATS : program produces a table of the number of actors between 0-9 degrees of separation from the actor specified.
+
+DISTANCE : program displays the connectivity of actor a to actor b. displaying with movie connected all actors through the connectivity flow.
+
+.PP
+
+.SH EXAMPLE USAGE
+ ./bacon -c "The Hangover III" 2008 (program will use Movies.txt as default)
+
+ Program will display the following:
+
+.br
+
+        ----- MOVIE CAST LIST -----
+
+        Movie: The Hangover Part III
+        Year: 2013
+        Cast:
+            Sasha Barrese
+            Justin Bartha
+            Jamie Chung
+            Bradley Cooper
+            Jonny Coyne
+            Mike Epps
+            Zach Galifianakis
+            John Goodman
+            etc... 
+
+        ------ END CAST LIST ------
+
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com
+

@@ -1,0 +1,33 @@
+.TH paper_money 1 "August 24, 2022" "user manual"
+.SH NAME
+.PP
+paper_money.c - This program identifies the amount of each denomintations to be returned. The denominations accounted for are 1, 2, 5, 10, 20, 50, and 100 dollar bills.
+.SH SYNOPSIS
+.PP
+usage - ./money
+.PP
+files - paper_money.c, paper_money.h, Makefile
+ 
+.SH DESCRIPTION
+.PP
+paper_money.c - The range of money being provided to teller is calculated with the formula (n^2 + 99n) where 1 <-- n <-- 21. The program incrementally calculates and displays the most efficient breakdown of $100, $202, $306, to $2520. (i.e. 1*100, 2*101, 3*102, etc.)
+
+This function does not accept user input.
+
+.SH FUNCTION DESCRIPTIONS
+.PP
+money_to_teller(int n) - contains the logic to complete the formula (n^2 + 99n) with whatever number is passed through (21 times). Casts the results to an array. Then each element of the array is sent to the money_amount() function.  
+
+money_amount(int num) - accepts an integer value from money_to_teller() function. The denominations 1, 2, 5, 10, 50, and 100 are used to return the correct dollar denominations/count for change. Each integer is divided and subtracted from the denominations until the result is 0. Then the amount passed and correct number of specified bills will be displayed.  
+
+
+.SH LICENSE
+.PP	  
+	
+
+
+.PP
+.SH AUTHOR
+CW2 Kyle Spicer, 170D Warrant Officer Basic Course
+
+contact email: kyle.d.spicer.mil@army.mil, kyledspicer@gmail.com
