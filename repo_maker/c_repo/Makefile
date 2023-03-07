@@ -15,7 +15,7 @@ TST_DIR := test
 SRCS := $(wildcard $(SRC_DIR)/*.c)
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-BIN := bacon
+BIN := 
 CHECK := $(BIN)_check
 
 TSTS := $(wildcard $(TST_DIR)/*.c)
@@ -35,11 +35,8 @@ check: $(CHECK)
 
 manual_check: $(BIN)
 manual_check:
-	./$(BIN) -f test.txt -c "Trouble Along the Way" 1953
-	./$(BIN) -f test.txt -m "Trouble Along the Way" 1953
-	./$(BIN) -f test.txt -r "Donna Reed"
-	./$(BIN) -f test.txt -s "Donna Reed"
-	./$(BIN) -f test.txt -d "Donna Reed" "Nick Cannon"
+#	./$(BIN) -f test.txt -c "Trouble Along the Way" 1953
+
 
 clean: 
 	@rm -rf $(OBJ_DIR) $(BIN) $(CHECK) gmon.out
@@ -47,24 +44,21 @@ clean:
 
 profile: CFLAGS += -pg
 profile: $(BIN)
-	./$(BIN) -m "Skippy" 1931
+	./$(BIN)
 
 valgrind: CFLAGS += -D DDEBUG -g3
 valgrind: $(BIN) 
-	valgrind $(VAL_FLAGS) ./$(BIN) -s "Adam Sandler"
+	valgrind $(VAL_FLAGS) ./$(BIN)
 
 # runs all required args with valgrind to verfiy no memory issues
 manual_valgrind: CFLAGS += -g3 -DDEBUG
 manual_valgrind: $(BIN)
-	valgrind $(VAL_FLAGS) ./$(BIN) -c "You've Got Mail" 1998
-	valgrind $(VAL_FLAGS) ./$(BIN) -m "Trouble Along the Way" 1953
-	valgrind $(VAL_FLAGS) ./$(BIN) -r "Billy Bob Thornton"
-	valgrind $(VAL_FLAGS) ./$(BIN) -s "Donna Reed"
-	valgrind $(VAL_FLAGS) ./$(BIN) -d "Adam Sandler" "John Wayne"
+	# valgrind $(VAL_FLAGS) ./$(BIN) -c "You've Got Mail" 1998
+	# valgrind $(VAL_FLAGS) ./$(BIN) -m "Trouble Along the Way" 1953
 
 
 run: $(BIN)
-	./$(BIN) --cast "The Hangover III" 2008
+	./$(BIN)
 
 # runs indent -linux on all source files, cleans up  *.~ files afterwards
 indent:
